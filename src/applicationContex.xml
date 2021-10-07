@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd ">
+
+
+<!-- scope=“prototype”这是多例  scope="singleton" 这是单例 init-method 初始化方法   destroy-method 销毁方法-->
+	<bean name="user" class="com.jimmy.bean.User" lazy-init="true"
+		scope="singleton" init-method="userInit" destroy-method="userDestroy">
+<!-- bean User类中的全包名 lazy-init延迟加载属性-->
+
+
+<!-- name是起一个名字，我们可以通过这个name来获取容器对象
+name可以使用特殊字符
+name可以重复、在实际开发中不推荐将name名字设置成重复的
+ -->
+		<property name="u_id" value="2"/>
+		<property name="u_username" value="张三"/>
+		<!-- 通过依赖注入方式给user属性赋值 -->
+	</bean>
+
+<!-- 可以作为主配置文件，将其他需要的配置文件引入进来 -->
+
+</beans>
+
+<!-- 1、需要添加约束条件 -->

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 生成条件约束 -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd ">
+
+
+    <!-- 将user对象交给spring管理，并注入值类型 set方法注入 -->
+    <bean name="user" class="com.jimmy.bean.User">
+        <property name="u_id" value="12"/>
+        <property name="u_username" value="老王"/>
+        <property name="u_password" value="123"/>
+        <!-- 注入引用类型 -->
+        <property name="u_pet" ref="dog"/>
+    </bean>
+
+
+    <!-- 引用注入 -->
+    <bean name="dog" class="com.jimmy.bean.Pet">
+        <property name="petType" value="小猴"/>
+        <property name="color" value="白色"/>
+    </bean>
+
+    <!-- 构造注入方法 -->
+    <bean name="user1" class="com.jimmy.bean.User">
+        <constructor-arg name="u_username" value="老李"/>
+        <constructor-arg name="u_pet" ref="dog"/>
+    </bean>
+
+    <!-- 构造注入带参注入定义类型 -->
+    <bean name="user2" class="com.jimmy.bean.User">
+        <constructor-arg name="u_username" value="89"
+                         type="java.lang.Integer">
+        </constructor-arg>
+        <constructor-arg name="u_pet" ref="dog"/>
+    </bean>
+
+
+    <!-- 构造注入带参注入定义类型 参数位置变化 index 是定义参数位置，0代表第一个参数、1代表第二个参数-->
+    <bean name="user3" class="com.jimmy.bean.User">
+        <constructor-arg name="u_username" value="100"
+                         type="java.lang.String" index="0">
+        </constructor-arg>
+        <constructor-arg name="u_pet" ref="dog"/>
+    </bean>
+
+    <!-- array -->
+    <bean name="collection" class="com.jimmy.bean.Mycellection">
+        <property name="array">
+            <array>
+                <value>123</value>
+                <value>asd</value>
+                <ref bean="dog"/>
+            </array>
+        </property>
+
+        <property name="list">
+
+            <list>
+                <value>456</value>
+                <value>wlzhu</value>
+            </list>
+        </property>
+
+        <property name="set">
+            <set>
+                <value>908</value>
+                <value>hwchen</value>
+            </set>
+        </property>
+
+        <property name="map">
+            <map>
+                <entry key="username" value="sa"></entry>
+                <entry key="password" value="123"></entry>
+                <!--				<entry key-ref="" value-ref=""></entry>-->
+            </map>
+        </property>
+
+        <property name="properties">
+            <props>
+                <prop key="user">张三</prop>
+                <prop key="age">27</prop>
+            </props>
+        </property>
+
+    </bean>
+</beans>
+
